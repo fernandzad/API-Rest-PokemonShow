@@ -1,0 +1,27 @@
+{
+  "name": "api-rest-pokemon",
+  "version": "1.0.0",
+  "description": "This is my API for a Pokemon application using Express, MongoDB, TypeScript and NodeJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jesusfer2575/API-Rest-Pokemon.git"
+  },
+  "author": "Adrian Fernandez, Julio Cervantes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Jesusfer2575/API-Rest-Pokemon/issues"
+  },
+  "homepage": "https://github.com/Jesusfer2575/API-Rest-Pokemon#readme",
+  "dependencies": {
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^3.21.2",
+    "mongoose": "^5.8.10",
+    "morgan": "^1.9.1"
+  }
+}
