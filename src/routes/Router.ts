@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express'
 
-class IndexRoutes{
+class Routes{
     public router: Router 
     constructor(){
         this.router = Router()
@@ -13,7 +13,7 @@ class IndexRoutes{
         })
     }
 }
-const indexRoutes = new IndexRoutes()
+const handler = new Routes()
 // indexRoutes.routes()
 
-export default indexRoutes.router
+export default handler.router
