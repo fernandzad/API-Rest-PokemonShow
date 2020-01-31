@@ -7,7 +7,8 @@ interface IPokemon{
     weight: string,
     height: string,
     evolution: string,
-    weaknesses: IWeakness
+    weaknesses: IWeakness,
+    image: string,
 }
 
 export default Pokemon

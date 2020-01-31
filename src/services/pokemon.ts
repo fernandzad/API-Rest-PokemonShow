@@ -1,19 +1,41 @@
 import IEndpoint from '../interfaces/endpoint'
+const {
+    IndexPage,
+    GetPokemonByNumber
+} = require('./Pokemon/controller')
 
 const endpoints: IEndpoint = {
     name: 'pokemon',
     endpoints: [
         {
             path: '',
-            method: 'get'
+            method: 'get',
+            handler: IndexPage
         },
         {
-            path: 'number',
-            method: 'get'
+            path: 'number/:id',
+            method: 'get',
+            handler: GetPokemonByNumber
         },
         {
-            path: 'name',
-            method: 'get'
+            path: 'name/:name',
+            method: 'get',
+            handler: IndexPage
+        },
+        {
+            path: 'number/:id',
+            method: 'post',
+            handler: IndexPage
+        },
+        {
+            path: 'name/:name',
+            method: 'post',
+            handler: IndexPage
+        },
+        {
+            path: 'number/:id',
+            method: 'delete',
+            handler: IndexPage
         },
     ]
 }

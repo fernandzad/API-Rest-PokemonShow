@@ -4,11 +4,12 @@ import * as mongodb from 'mongodb'
 function initialize(){
     const {
         DB_NAME,
-        DB_COLLECTION
+        DB_COLLECTION,
+        CONNECTION_URL
     } = process.env
 
     const MongoClient = require('mongodb').MongoClient
-    const uri = process.env.CONNECTION_URL
+    const uri = CONNECTION_URL
     const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true })
     connectDB(client, DB_NAME, DB_COLLECTION)
 }

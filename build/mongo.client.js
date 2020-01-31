@@ -11,9 +11,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 require('dotenv').config();
 function initialize() {
-    const { DB_NAME, DB_COLLECTION } = process.env;
+    const { DB_NAME, DB_COLLECTION, CONNECTION_URL } = process.env;
     const MongoClient = require('mongodb').MongoClient;
-    const uri = process.env.CONNECTION_URL;
+    const uri = CONNECTION_URL;
     const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
     connectDB(client, DB_NAME, DB_COLLECTION);
 }
