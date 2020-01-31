@@ -1,4 +1,4 @@
-require('dotenv').config()
+const dotenv = require('dotenv')
 const express = require('express')
 const morgan = require('morgan')
 const helmet = require('helmet')
@@ -7,15 +7,12 @@ const mongodb = require('mongodb')
 const compression = require('compression')
 const cors = require('cors')
 const body_parser = require('body-parser');
-const db = require('./src/mongo.helper')
+const db = require('./src/mongo.client')
 
-const {
-    DB_NAME,
-    DB_COLLECTION
-} = process.env
+dotenv.config()
 
 const app = express()
-db.initialize(DB_NAME, DB_COLLECTION)
+db.initialize()
 app.set('port', process.env.PORT || 3000)
 app.use(morgan('dev'))
 app.use(express.json())

@@ -1,5 +1,5 @@
 "use strict";
-require('dotenv').config();
+const dotenv = require('dotenv');
 const express = require('express');
 const morgan = require('morgan');
 const helmet = require('helmet');
@@ -9,6 +9,7 @@ const compression = require('compression');
 const cors = require('cors');
 const body_parser = require('body-parser');
 const db = require('./src/mongo.helper');
+dotenv.config();
 const { DB_NAME, DB_COLLECTION } = process.env;
 const app = express();
 db.initialize(DB_NAME, DB_COLLECTION);

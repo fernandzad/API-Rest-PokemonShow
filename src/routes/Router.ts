@@ -1,19 +1,21 @@
-import { Request, Response, Router } from 'express'
+import Endpoint from '../interfaces/endpoint'
 
-class Routes{
-    public router: Router 
-    constructor(){
-        this.router = Router()
-        this.routes()
-    }
+const express = require('express')
+const router = express.Router()
 
-    routes(){
-        this.router.get('/', (req, res) => {
-            res.send('Root')
-        })
-    }
-}
-const handler = new Routes()
-// indexRoutes.routes()
-
-export default handler.router
+const services = [
+    require('../services/pokemon'),
+]
+services.forEach(service => {
+    const { 
+        name, 
+        endpoints 
+    }: Endpoint = service
+    endpoints.forEach( endpoint => {
+        const { 
+            path, 
+            method 
+        } = endpoint
+        router[method](`/${name}/${path}`);
+    } )
+});
