@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-dotenv.config();
+require('dotenv').config();
 function initialize() {
     const { DB_NAME, DB_COLLECTION } = process.env;
     const MongoClient = require('mongodb').MongoClient;
@@ -21,14 +21,15 @@ function connectDB(client, dbName, dbCollectionName) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             yield client.connect();
-            const collection = client.db(dbName).collection(dbCollectionName);
-            collection.find().toArray((error, result) => {
-                if (error) {
-                    throw error;
-                }
-                console.log(result);
-                console.log("[MongoDB connection] SUCCESS");
-            });
+            console.log("[MongoDB connection] SUCCESS");
+            // const collection = client.db(dbName).collection(dbCollectionName)
+            //     collection.find().toArray((error: mongodb.MongoError, result: object[]) => {
+            //         if(error) {
+            //             throw error
+            //         }
+            //         console.log(result)
+            //         console.log("[MongoDB connection] SUCCESS")
+            //     });
             client.close();
         }
         catch (error) {

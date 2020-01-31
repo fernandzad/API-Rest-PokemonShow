@@ -1,4 +1,4 @@
-dotenv.config()
+require('dotenv').config()
 import * as mongodb from 'mongodb'
 
 function initialize(){
@@ -16,14 +16,15 @@ function initialize(){
 async function connectDB(client: mongodb.MongoClient, dbName: string | any, dbCollectionName: string | any){
     try {
         await client.connect()
-        const collection = client.db(dbName).collection(dbCollectionName)
-            collection.find().toArray((error: mongodb.MongoError, result: object[]) => {
-                if(error) {
-                    throw error
-                }
-                console.log(result)
-                console.log("[MongoDB connection] SUCCESS")
-            });
+        console.log("[MongoDB connection] SUCCESS")
+        // const collection = client.db(dbName).collection(dbCollectionName)
+        //     collection.find().toArray((error: mongodb.MongoError, result: object[]) => {
+        //         if(error) {
+        //             throw error
+        //         }
+        //         console.log(result)
+        //         console.log("[MongoDB connection] SUCCESS")
+        //     });
 
             client.close()          
     } catch (error) {

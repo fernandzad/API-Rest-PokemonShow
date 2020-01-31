@@ -9,6 +9,7 @@ services.forEach(service => {
     const { name, endpoints } = service;
     endpoints.forEach(endpoint => {
         const { path, method } = endpoint;
-        router[method](`/${name}/${path}`);
+        router[method](`/api/${name}/${path}`);
     });
 });
+module.exports = router;

@@ -1,25 +1,23 @@
 "use strict";
-const dotenv = require('dotenv');
+require('dotenv').config();
 const express = require('express');
+const dotenv = require('dotenv');
 const morgan = require('morgan');
 const helmet = require('helmet');
-const Router = require('./src/routes/Router');
-const mongodb = require('mongodb');
+const routes = require('./routes/Router');
 const compression = require('compression');
 const cors = require('cors');
-const body_parser = require('body-parser');
-const db = require('./src/mongo.client');
-dotenv.config();
+const db = require('./mongo.client');
 const app = express();
 db.initialize();
 app.set('port', process.env.PORT || 3000);
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(body_parser.json());
+app.use(express.urlencoded({ extended: false }));
 // app.use(helmet())
 // app.use(compression())
 // app.use(cors())
-app.use(Router);
+app.use('/', routes);
 const port = app.get('port');
 app.listen(port, () => {
     console.log(`Server listening at port: ${port}`);

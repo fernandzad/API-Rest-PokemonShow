@@ -16,6 +16,8 @@ services.forEach(service => {
             path, 
             method 
         } = endpoint
-        router[method](`/${name}/${path}`);
+        router[method](`/api/${name}/${path}`);
     } )
 });
+
+module.exports = router
