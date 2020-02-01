@@ -17,7 +17,7 @@ services.forEach(service => {
             method,
             handler 
         } = endpoint
-        router[method](`/api/${name}/${path}`, handler);
+        router[method](`/${name}/${path}`, handler);
     } )
 });
 

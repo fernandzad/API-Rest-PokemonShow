@@ -1,7 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const mongoose_1 = require("mongoose");
-const pokemonSchema = new mongoose_1.Schema({
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const Pokemon = new Schema({
     name: {
         type: String,
         required: true
@@ -11,7 +12,7 @@ const pokemonSchema = new mongoose_1.Schema({
         required: true
     },
     number: {
-        type: Number,
+        type: String,
         required: true
     },
     weight: {
@@ -28,11 +29,12 @@ const pokemonSchema = new mongoose_1.Schema({
     },
     weaknesses: {
         type: Array,
-        required: true
+        required: false
     },
     image: {
         type: String,
         required: true,
     },
 });
-module.exports = mongoose_1.model('Pokemon', pokemonSchema);
+const collection = 'pokemon';
+module.exports = mongoose.model('Pokemon', Pokemon, collection);

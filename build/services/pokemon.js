@@ -1,13 +1,13 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const { IndexPage, GetPokemonByNumber } = require('./Pokemon/controller');
+const { IndexPage, GetPokemonByNumber, PostPokemon, GetAllPokemon } = require('./Pokemon/controller');
 const endpoints = {
     name: 'pokemon',
     endpoints: [
         {
             path: '',
             method: 'get',
-            handler: IndexPage
+            handler: GetAllPokemon
         },
         {
             path: 'number/:id',
@@ -20,9 +20,9 @@ const endpoints = {
             handler: IndexPage
         },
         {
-            path: 'number/:id',
+            path: '',
             method: 'post',
-            handler: IndexPage
+            handler: PostPokemon
         },
         {
             path: 'name/:name',

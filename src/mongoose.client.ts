@@ -8,14 +8,19 @@ const {
     CONNECTION_URL,
 } = process.env
 
-function connect(){
-    if(CONNECTION_URL !== undefined){
+async function connect(){
+    if(CONNECTION_URL !== undefined && DB_NAME !== undefined && DB_COLLECTION !== undefined){
+        mongoose.set('useFindAndModify', false);
         mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-        const db = mongoose.connection
-        db.on('error', (error) => {
+        const database = mongoose.connection
+
+        //console.table(database.collections)
+
+        database.on('error', (error) => {
             console.log(error)
         })
-        db.once('open', () => { console.log('[MongoDB (mongoose) connection]: SUCCESS') })
+        database.once('open', () => { console.log('[MongoDB (mongoose) connection]: SUCCESS') })
+        // database.useDb(DB_NAME).collection(DB_COLLECTION)
     }else{
         console.log('The connection string is not valid')
     }

@@ -1,6 +1,9 @@
-import { Schema, model } from 'mongoose'
+import { ObjectId } from "mongodb"
 
-const pokemonSchema = new Schema({
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
+
+const Pokemon = new Schema({
     name: {
         type: String,
         required: true
@@ -10,7 +13,7 @@ const pokemonSchema = new Schema({
         required: true
     },
     number: {
-        type: Number,
+        type: String,
         required: true
     },
     weight: {
@@ -27,7 +30,7 @@ const pokemonSchema = new Schema({
     },
     weaknesses: {
         type: Array,
-        required: true
+        required: false
     },
     image: {
         type: String,
@@ -36,4 +39,5 @@ const pokemonSchema = new Schema({
     },
 })
 
-module.exports = model('Pokemon', pokemonSchema)
+const collection = 'pokemon'
+module.exports = mongoose.model('Pokemon', Pokemon, collection)

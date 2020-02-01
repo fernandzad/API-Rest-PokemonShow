@@ -15,18 +15,50 @@ const IndexPage = (req, res) => {
     // console.log(body)
     res.send('Probando, probando... Uno, dos, tres...');
 };
-const GetPokemonByNumber = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const GetAllPokemon = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { params } = req;
-        let numberInDex = parseInt(params.id);
-        const pokemon = yield Pokemon.find({ number: numberInDex });
-        console.log(pokemon);
+        const pokemon = yield Pokemon.find();
+        console.table(pokemon);
         res.send(pokemon);
     }
     catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+const GetPokemonByNumber = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { params } = req;
+        let numberInDex = params.id;
+        const pokemon = yield Pokemon.find({ number: numberInDex });
+        console.table(pokemon);
+        res.send(pokemon);
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
+const PostPokemon = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const poke = new Pokemon({
+        "name": "Gengar",
+        "type": "Ghost",
+        "number": '94',
+        "weight": "40.5",
+        "height": "1.5",
+        "evolution": "Sin evolucion",
+        "weaknesses": ["Ghost", "Synister", " Psychic"],
+        "image": "https://vignette.wikia.nocookie.net/pokemonreloaded/images/f/f8/Gengar.png/revision/latest/scale-to-width-down/340?cb=20140809002539&path-prefix=es"
+    });
+    try {
+        const new_poke = yield poke.save();
+        res.status(201).json(new_poke);
+    }
+    catch (error) {
+        res.status(400).json({ message: error.message });
     }
 });
 module.exports = {
     IndexPage,
-    GetPokemonByNumber
+    GetPokemonByNumber,
+    PostPokemon,
+    GetAllPokemon
 };

@@ -1,6 +1,5 @@
 require('dotenv').config()
 const express = require('express')
-const dotenv = require('dotenv')
 const morgan = require('morgan')
 const helmet = require('helmet')
 const routes = require('./routes/Router')
@@ -17,7 +16,7 @@ app.use(express.urlencoded( { extended: false } ))
 // app.use(helmet())
 // app.use(compression())
 // app.use(cors())
-app.use('/', routes)
+app.use('/api', routes)
 
 const port: string = app.get('port')
 app.listen(port, () => {

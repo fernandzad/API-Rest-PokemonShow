@@ -3,7 +3,7 @@ import IWeakness from './weakness'
 interface IPokemon{
     name: string,
     type: string,
-    number: number,
+    number: string,
     weight: string,
     height: string,
     evolution: string,
