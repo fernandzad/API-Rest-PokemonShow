@@ -9,8 +9,8 @@ const {
 } = process.env
 
 async function connect(){
-    if(CONNECTION_URL !== undefined && DB_NAME !== undefined && DB_COLLECTION !== undefined){
-        mongoose.set('useFindAndModify', false);
+    if(CONNECTION_URL !== undefined){
+        //mongoose.set('useFindAndModify', false);
         mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
         const database = mongoose.connection
 

@@ -24,12 +24,38 @@ const GetPokemonByNumber = async (req: Request, res: Response) => {
             params
         } = req
         
-        let numberInDex = params.id
+        let numberInDex: string = params.id
         const pokemon: IPokemon = await Pokemon.find({ number: numberInDex })
-        console.table(pokemon)
-        res.send(pokemon)
+        if(pokemon !== undefined){
+            console.table(pokemon)
+            res.send(pokemon)
+        }else{
+            console.log(`Pokemon with id: ${numberInDex} not found`)
+            res.send(pokemon)
+        }
+        
     }catch(error) {
         res.status(500).json({ message: error.message })
+    }
+}
+const GetPokemonByName = async (req: Request, res: Response) => {
+    try {
+        
+        const {
+            params
+        } = req
+
+        const nameInDex: string = params.name
+        const pokemon: IPokemon = await Pokemon.find({name: nameInDex }).exec()
+        if (pokemon !== undefined) {
+            console.log(pokemon)
+            res.send(pokemon)
+        } else {
+            console.log(`Pokemon with name: ${nameInDex} not found`)
+            res.send(pokemon)
+        }
+    } catch (error) {
+        res.status(500).json({ messag: error.message })
     }
 }
 
@@ -53,9 +79,32 @@ const PostPokemon = async (req: Request, res: Response) => {
 
 }
 
+const RemovePokemonByNumber = async (req: Request, res: Response) => {
+    const {
+        params
+    } = req
+    try {
+        const numberInDex = params.id
+        const response = await Pokemon.find({ number: numberInDex }).deleteOne().exec()
+        if(response.n > 0){
+            console.log(`Pokemon with number: ${numberInDex} deleted`)
+            res.send(response)
+        }else{
+            console.log('The Pokemon was not found')
+            res.send(response)
+        }
+    } 
+    catch (error) {
+        res.status(500).json({ message: error.message })
+    }
+}
+
 module.exports = {
     IndexPage,
     GetPokemonByNumber,
     PostPokemon,
-    GetAllPokemon
+    GetAllPokemon,
+    GetPokemonByName,
+    RemovePokemonByNumber,
 }
+

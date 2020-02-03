@@ -18,8 +18,8 @@ const mongoose_1 = __importDefault(require("mongoose"));
 const { DB_NAME, DB_COLLECTION, CONNECTION_URL, } = process.env;
 function connect() {
     return __awaiter(this, void 0, void 0, function* () {
-        if (CONNECTION_URL !== undefined && DB_NAME !== undefined && DB_COLLECTION !== undefined) {
-            mongoose_1.default.set('useFindAndModify', false);
+        if (CONNECTION_URL !== undefined) {
+            //mongoose.set('useFindAndModify', false);
             mongoose_1.default.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true });
             const database = mongoose_1.default.connection;
             //console.table(database.collections)

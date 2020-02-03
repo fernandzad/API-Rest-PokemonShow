@@ -30,11 +30,35 @@ const GetPokemonByNumber = (req, res) => __awaiter(void 0, void 0, void 0, funct
         const { params } = req;
         let numberInDex = params.id;
         const pokemon = yield Pokemon.find({ number: numberInDex });
-        console.table(pokemon);
-        res.send(pokemon);
+        if (pokemon !== undefined) {
+            console.table(pokemon);
+            res.send(pokemon);
+        }
+        else {
+            console.log(`Pokemon with id: ${numberInDex} not found`);
+            res.send(pokemon);
+        }
     }
     catch (error) {
         res.status(500).json({ message: error.message });
+    }
+});
+const GetPokemonByName = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const { params } = req;
+        const nameInDex = params.name;
+        const pokemon = yield Pokemon.find({ name: nameInDex }).exec();
+        if (pokemon !== undefined) {
+            console.log(pokemon);
+            res.send(pokemon);
+        }
+        else {
+            console.log(`Pokemon with name: ${nameInDex} not found`);
+            res.send(pokemon);
+        }
+    }
+    catch (error) {
+        res.status(500).json({ messag: error.message });
     }
 });
 const PostPokemon = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -56,9 +80,29 @@ const PostPokemon = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
         res.status(400).json({ message: error.message });
     }
 });
+const RemovePokemonByNumber = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { params } = req;
+    try {
+        const numberInDex = params.id;
+        const response = yield Pokemon.find({ number: numberInDex }).deleteOne().exec();
+        if (response.n > 0) {
+            console.log(`Pokemon with number: ${numberInDex} deleted`);
+            res.send(response);
+        }
+        else {
+            console.log('The Pokemon was not found');
+            res.send(response);
+        }
+    }
+    catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+});
 module.exports = {
     IndexPage,
     GetPokemonByNumber,
     PostPokemon,
-    GetAllPokemon
+    GetAllPokemon,
+    GetPokemonByName,
+    RemovePokemonByNumber,
 };

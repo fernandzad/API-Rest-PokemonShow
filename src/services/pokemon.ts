@@ -3,7 +3,9 @@ const {
     IndexPage,
     GetPokemonByNumber,
     PostPokemon, 
-    GetAllPokemon
+    GetAllPokemon,
+    GetPokemonByName,
+    RemovePokemonByNumber,
 } = require('./Pokemon/controller')
 
 const endpoints: IEndpoint = {
@@ -22,7 +24,7 @@ const endpoints: IEndpoint = {
         {
             path: 'name/:name',
             method: 'get',
-            handler: IndexPage
+            handler: GetPokemonByName
         },
         {
             path: '',
@@ -32,12 +34,12 @@ const endpoints: IEndpoint = {
         {
             path: 'name/:name',
             method: 'post',
-            handler: IndexPage
+            handler: PostPokemon
         },
         {
             path: 'number/:id',
             method: 'delete',
-            handler: IndexPage
+            handler: RemovePokemonByNumber
         },
     ]
 }
