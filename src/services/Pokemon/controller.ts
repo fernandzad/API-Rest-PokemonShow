@@ -86,7 +86,7 @@ const RemovePokemonByNumber = async (req: Request, res: Response) => {
     try {
         const numberInDex = params.id
         const response = await Pokemon.find({ number: numberInDex }).deleteOne().exec()
-        if(response.n > 0){
+        if(response > 0){
             console.log(`Pokemon with number: ${numberInDex} deleted`)
             res.send(response)
         }else{

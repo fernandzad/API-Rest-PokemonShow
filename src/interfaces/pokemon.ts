@@ -11,4 +11,4 @@ interface IPokemon{
     image: string,
 }
 
-export default Pokemon
+export default IPokemon
