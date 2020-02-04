@@ -1,3 +1,5 @@
+import { Request, Response, NextFunction } from "express";
+
 require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
@@ -16,6 +18,9 @@ app.use(express.urlencoded( { extended: false } ));
 app.use(helmet());
 app.use(compression());
 app.use(cors());
+app.use((req: Request, res: Response, next: NextFunction) => {
+    res.header("Access-Control-Allow-Headers", 'Authorization, Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
+});
 db();
 app.use('/api', routes);
 
